@@ -341,7 +341,7 @@
   <div class="wrap hero">
     <div class="hero-copy">
       <h1 class="reveal" data-d="1">Always typing in the<br><span class="grad">right language.</span></h1>
-      <p class="subhead reveal" data-d="2">FlicKey learns your input language for <b>every app and every website</b>, then switches the instant you focus. It's the auto-switching macOS never quite got right. And if you ever slip, one shortcut flips the gibberish back.</p>
+      <p class="subhead reveal" data-d="2">FlicKey learns your input language for <b>every app, every website, even each browser tab</b>, then switches the instant you focus. It's the auto-switching macOS never quite got right. And if you ever slip, one shortcut flips the gibberish back.</p>
       <div class="cta-row reveal" data-d="3">
         <a class="btn btn-primary" href="https://github.com/alfital2/flickey-app/releases/latest/download/FlicKey.dmg">
           <svg class="apple" viewBox="0 0 24 24"><path d="M17.05 12.04c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.32.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.69.71 2.85.69 1.18-.02 1.92-1.08 2.64-2.14.83-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.5zM14.88 5.39c.6-.73 1.01-1.74.9-2.75-.87.04-1.92.58-2.55 1.31-.56.64-1.05 1.67-.92 2.65.97.08 1.96-.49 2.57-1.21z"/></svg>
@@ -700,18 +700,47 @@
   }
 
   // ---------- macOS auto-switch scene ----------
+  // A browser whose tabs each carry their own input language (per-tab memory).
+  var BROWSER={name:'Safari',browser:true,color:'#1f8cf0',mono:'S',tabs:[
+    {site:'github.com',code:'EN',lang:'English',rtl:false,text:'git push origin main'},
+    {site:'ynet.co.il',code:'HE',lang:'Hebrew',rtl:true,text:'\u05d1\u05d5\u05e7\u05e8 \u05d8\u05d5\u05d1, \u05de\u05d4 \u05d7\u05d3\u05e9?'},
+    {site:'vk.com',code:'RU',lang:'Russian',rtl:false,text:'\u041f\u0440\u0438\u0432\u0435\u0442! \u041a\u0430\u043a \u0434\u0435\u043b\u0430?'}
+  ]};
   var APPS=[
     {name:'Terminal',code:'EN',lang:'English',rtl:false,term:true,color:'#3a3a42',mono:'>_',bubble:'',text:'git commit -m "ship it"'},
     {name:'Messages',code:'HE',lang:'Hebrew',rtl:true,color:'#34c759',mono:'M',bubble:'\u05de\u05ea\u05d9 \u05d0\u05ea\u05d4 \u05de\u05d2\u05d9\u05e2?',text:'\u05d0\u05e0\u05d9 \u05d1\u05d0 \u05d1\u05e2\u05d5\u05d3 \u05e2\u05e9\u05e8 \u05d3\u05e7\u05d5\u05ea'},
     {name:'Telegram',code:'RU',lang:'Russian',rtl:false,color:'#2aabee',mono:'T',bubble:'\u0422\u044b \u0433\u0434\u0435?',text:'\u041f\u0440\u0438\u0432\u0435\u0442! \u0423\u0436\u0435 \u0435\u0434\u0443'},
-    {name:'WhatsApp',code:'AR',lang:'Arabic',rtl:true,color:'#25d366',mono:'W',bubble:'\u0623\u064a\u0646 \u0623\u0646\u062a\u061f',text:'\u0645\u0631\u062d\u0628\u0627\u060c \u0623\u0646\u0627 \u0641\u064a \u0627\u0644\u0637\u0631\u064a\u0642'}
+    {name:'WhatsApp',code:'AR',lang:'Arabic',rtl:true,color:'#25d366',mono:'W',bubble:'\u0623\u064a\u0646 \u0623\u0646\u062a\u061f',text:'\u0645\u0631\u062d\u0628\u0627\u060c \u0623\u0646\u0627 \u0641\u064a \u0627\u0644\u0637\u0631\u064a\u0642'},
+    BROWSER
   ];
+
+  // Flatten to ordered stops; the browser expands into one stop per tab so the
+  // auto-cycle visits each tab and shows the input flipping between them.
+  var STOPS=[];
+  APPS.forEach(function(app,ai){
+    if(app.browser){ app.tabs.forEach(function(tab,ti){ STOPS.push({ai:ai,app:app,tab:tab,ti:ti}); }); }
+    else { STOPS.push({ai:ai,app:app}); }
+  });
+
   var dock=document.getElementById('dock');
   var mbApp=document.getElementById('mbApp'), winTitle=document.getElementById('winTitle'),
       winIcon=document.getElementById('winIcon'), winBubble=document.getElementById('winBubble'),
       composer=document.getElementById('composer'), composeText=document.getElementById('composeText'),
       langName=document.getElementById('langName'), inputPill=document.getElementById('inputPill'),
       appWin=document.getElementById('appWin');
+
+  // Browser tab strip (shown only when the browser is focused).
+  var tabStrip=document.createElement('div');
+  tabStrip.style.cssText='display:none;gap:6px;margin-bottom:14px;flex-wrap:wrap';
+  if(winBubble&&winBubble.parentNode){ winBubble.parentNode.insertBefore(tabStrip,winBubble); }
+  var tabEls=BROWSER.tabs.map(function(tab){
+    var t=document.createElement('span');
+    t.textContent=tab.site;
+    t.style.cssText="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:4px 10px;border-radius:8px;"
+      +"border:1px solid rgba(255,255,255,.1);color:var(--ink-soft);background:rgba(255,255,255,.04);transition:all .25s";
+    tabStrip.appendChild(t); return t;
+  });
+
   var dockBtns=[];
   if(dock){
     APPS.forEach(function(app,i){
@@ -720,38 +749,67 @@
       b.style.fontFamily=app.term?"'JetBrains Mono',monospace":"'Inter',sans-serif";
       b.style.fontSize=app.term?'14px':'16px';
       b.textContent=app.mono; b.setAttribute('aria-label',app.name);
-      b.addEventListener('click',function(){ userPick=true; selectApp(i); });
+      b.addEventListener('click',function(){
+        userPick=true;
+        for(var s=0;s<STOPS.length;s++){ if(STOPS[s].ai===i){ selectStop(s); break; } }
+      });
       dock.appendChild(b); dockBtns.push(b);
     });
   }
-  var curApp=-1, userPick=false;
-  function selectApp(i){
-    if(i===curApp) return;
-    curApp=i; var app=APPS[i];
-    dockBtns.forEach(function(b,j){ b.setAttribute('aria-current', j===i?'true':'false'); });
-    mbApp.textContent=app.name; winTitle.textContent=app.name;
-    winIcon.textContent=app.mono; winIcon.style.background='linear-gradient(160deg,'+app.color+',rgba(0,0,0,.25))';
-    winIcon.style.fontFamily=app.term?"'JetBrains Mono',monospace":"'Inter',sans-serif";
-    if(app.bubble){ winBubble.textContent=app.bubble; winBubble.style.display='inline-block'; winBubble.dir=app.rtl?'rtl':'ltr'; }
-    else { winBubble.style.display='none'; }
-    composeText.textContent=app.text;
-    composer.classList.toggle('rtl',app.rtl);
-    composer.classList.toggle('term',!!app.term);
-    langName.textContent=app.lang;
-    inputPill.textContent=app.code;
-    if(!reduce){
-      inputPill.classList.remove('pulse'); void inputPill.offsetWidth; inputPill.classList.add('pulse');
-      appWin.classList.remove('pop'); void appWin.offsetWidth; appWin.classList.add('pop');
+
+  var curStop=-1, userPick=false;
+  function applyPulse(){
+    if(reduce) return;
+    inputPill.classList.remove('pulse'); void inputPill.offsetWidth; inputPill.classList.add('pulse');
+    appWin.classList.remove('pop'); void appWin.offsetWidth; appWin.classList.add('pop');
+  }
+  function selectStop(si){
+    if(si===curStop) return;
+    curStop=si; var stop=STOPS[si]; var app=stop.app;
+    dockBtns.forEach(function(b,j){ b.setAttribute('aria-current', j===stop.ai?'true':'false'); });
+
+    if(app.browser){
+      var tab=stop.tab;
+      mbApp.textContent=app.name; winTitle.textContent=tab.site;
+      winIcon.textContent=app.mono;
+      winIcon.style.background='linear-gradient(160deg,'+app.color+',rgba(0,0,0,.25))';
+      winIcon.style.fontFamily="'Inter',sans-serif";
+      tabStrip.style.display='flex';
+      tabEls.forEach(function(t,ti){
+        var on=ti===stop.ti;
+        t.style.color=on?'#fff':'var(--ink-soft)';
+        t.style.borderColor=on?'transparent':'rgba(255,255,255,.1)';
+        t.style.background=on?'linear-gradient(120deg,rgba(106,71,242,.85),rgba(45,158,250,.7))':'rgba(255,255,255,.04)';
+      });
+      winBubble.textContent='\ud83d\udd12 '+tab.site;
+      winBubble.style.display='inline-block'; winBubble.dir='ltr';
+      composeText.textContent=tab.text;
+      composer.classList.toggle('rtl',tab.rtl);
+      composer.classList.toggle('term',false);
+      langName.textContent=tab.lang; inputPill.textContent=tab.code;
+    } else {
+      tabStrip.style.display='none';
+      mbApp.textContent=app.name; winTitle.textContent=app.name;
+      winIcon.textContent=app.mono;
+      winIcon.style.background='linear-gradient(160deg,'+app.color+',rgba(0,0,0,.25))';
+      winIcon.style.fontFamily=app.term?"'JetBrains Mono',monospace":"'Inter',sans-serif";
+      if(app.bubble){ winBubble.textContent=app.bubble; winBubble.style.display='inline-block'; winBubble.dir=app.rtl?'rtl':'ltr'; }
+      else { winBubble.style.display='none'; }
+      composeText.textContent=app.text;
+      composer.classList.toggle('rtl',app.rtl);
+      composer.classList.toggle('term',!!app.term);
+      langName.textContent=app.lang; inputPill.textContent=app.code;
     }
+    applyPulse();
   }
   if(dock){
-    selectApp(0);
+    selectStop(0);
     if(!reduce){
-      var ai=0;
+      var si=0;
       var macTimer=setInterval(function(){
         if(userPick){ clearInterval(macTimer); return; }
-        ai=(ai+1)%APPS.length; selectApp(ai);
-      },2900);
+        si=(si+1)%STOPS.length; selectStop(si);
+      },2600);
     }
   }
 
