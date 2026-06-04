@@ -176,6 +176,9 @@
   .key{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;background:rgba(255,255,255,.07);
     border:1px solid var(--line);border-bottom-width:2px;border-radius:7px;padding:4px 9px;color:var(--ink);transition:transform .12s,background .12s}
   .key.press{transform:translateY(2px);background:var(--grad);border-color:transparent}
+  .cfg-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.6px;
+    text-transform:uppercase;color:#b3a6f7;background:rgba(124,107,255,.12);
+    border:1px solid rgba(124,107,255,.28);border-radius:6px;padding:3px 8px;margin-left:6px}
   .flipbtn{display:inline-flex;align-items:center;gap:9px}
   .flipbtn svg{width:17px;height:17px}
   .flip-spin svg{animation:spin .5s cubic-bezier(.4,0,.2,1)}
@@ -469,7 +472,7 @@
       </div>
 
       <div class="demo-foot">
-        <div class="kbd">Shortcut <span class="key" id="key1">⌥</span><span class="key" id="key2">2</span> <span style="color:#8b7bf0;font-weight:600">(configurable!)</span></div>
+        <div class="kbd">Shortcut <span class="key" id="key1">⌥</span><span class="key" id="key2">2</span> <span class="cfg-badge">configurable</span></div>
         <button class="btn btn-primary flipbtn" id="flipBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4 21 8 17 12"/><path d="M21 8H8a4 4 0 0 0-4 4"/><path d="M7 20 3 16 7 12"/><path d="M3 16h13a4 4 0 0 0 4-4"/></svg>
           Fix
