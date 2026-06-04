@@ -565,7 +565,7 @@
   <div class="wrap foot-in">
     <div class="foot-brand">
       <span class="sq sq-28" id="footico"></span>
-      FlicKey <span style="color:var(--ink-faint);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:13px">v0.2.0</span>
+      FlicKey <span id="appVersion" style="color:var(--ink-faint);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:13px">v0.2.0</span>
     </div>
     <div class="foot-meta">
       <span>Requires macOS Ventura or later</span>
@@ -880,6 +880,22 @@
     },{threshold:.14});
     document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
   }
+})();
+
+// Keep the footer version label in sync with the latest GitHub release, so it
+// never has to be updated by hand. Falls back to the hardcoded value on error.
+(function(){
+  var el = document.getElementById('appVersion');
+  if (!el || !window.fetch) return;
+  fetch('https://api.github.com/repos/alfital2/flickey-app/releases/latest',
+        { headers: { 'Accept': 'application/vnd.github+json' } })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (d && d.tag_name) {
+        el.textContent = d.tag_name[0] === 'v' ? d.tag_name : 'v' + d.tag_name;
+      }
+    })
+    .catch(function(){ /* keep fallback */ });
 })();
 </script>
 </body>
