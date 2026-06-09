@@ -331,17 +331,17 @@
     .halo,.bigsquircle,.swap-g,.orbit,.o-slot .upr,.ochip,.ambient::before,.ambient::after{animation:none!important}
   }
   /* privacy: permissions accordion */
-  .perms{max-width:760px;margin:30px auto 0;display:flex;flex-direction:column;gap:10px}
+  .perms{margin:16px 0 0;display:flex;flex-direction:column;gap:8px}
   .perm{display:block;width:100%;text-align:left;background:var(--glass);border:1px solid var(--line);
-    border-radius:14px;padding:15px 18px;cursor:pointer;color:var(--ink);font:inherit;
+    border-radius:11px;padding:11px 14px;cursor:pointer;color:var(--ink);font:inherit;
     transition:background .2s,border-color .2s}
   .perm:hover{background:var(--glass-2);border-color:rgba(255,255,255,.16)}
-  .perm-h{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
-  .perm-x{color:var(--ink-faint);font-size:22px;line-height:1;transition:transform .25s,color .25s}
+  .perm-h{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px}
+  .perm-x{color:var(--ink-faint);font-size:19px;line-height:1;transition:transform .25s,color .25s}
   .perm.open .perm-x{transform:rotate(45deg);color:#8b6cff}
-  .perm-d{display:block;color:var(--ink-soft);font-size:13.5px;line-height:1.6;
+  .perm-d{display:block;color:var(--ink-soft);font-size:12.5px;line-height:1.55;
     max-height:0;overflow:hidden;opacity:0;transition:max-height .32s ease,opacity .25s,margin-top .32s}
-  .perm.open .perm-d{max-height:200px;opacity:1;margin-top:11px}
+  .perm.open .perm-d{max-height:240px;opacity:1;margin-top:9px}
   .perm-d code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink)}
 </style>
 </head>
@@ -591,24 +591,22 @@
         <h3>One network call</h3>
         <p>The only connection it makes is a version check to GitHub - and it sends nothing about you. That's it.</p>
       </div>
-      <div class="card reveal r-right" data-d="3" data-tilt>
+      <div class="card reveal r-right" data-d="3">
         <div class="card-ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8"/><path d="M16.5 6.5l3 3"/></svg></div>
         <h3>Permissions, explained</h3>
-        <p>Two macOS permissions, each for one clear job. Tap below to see exactly what they do - and don't.</p>
+        <p>Two macOS permissions, each for one clear job. Tap a row to see exactly what it does - and doesn't.</p>
+        <div class="perms">
+          <button class="perm" type="button" aria-expanded="false">
+            <span class="perm-h"><span><b>Accessibility</b> - to switch &amp; fix</span><span class="perm-x">+</span></span>
+            <span class="perm-d">Reads the active window's <em>title</em> (to know which app/site/chat you're in) and sends the copy-and-paste keystrokes for the “fix layout” shortcut. It does <b>not</b> read your screen or log what you type.</span>
+          </button>
+          <button class="perm" type="button" aria-expanded="false">
+            <span class="perm-h"><span><b>Automation</b> - to read the tab you're on</span><span class="perm-x">+</span></span>
+            <span class="perm-d">Asks your browser for the current tab's address so it can remember your language per website. It keeps only the bare domain (e.g. <code>ynet.co.il</code>) - never the full URL or page contents.</span>
+          </button>
+        </div>
       </div>
     </div>
-
-    <div class="perms reveal">
-      <button class="perm" type="button" aria-expanded="false">
-        <span class="perm-h"><span><b>Accessibility</b> - to switch &amp; fix</span><span class="perm-x">+</span></span>
-        <span class="perm-d">Reads the active window's <em>title</em> (to know which app/site/chat you're in) and sends the copy-and-paste keystrokes for the “fix layout” shortcut. It does <b>not</b> read your screen or log what you type.</span>
-      </button>
-      <button class="perm" type="button" aria-expanded="false">
-        <span class="perm-h"><span><b>Automation</b> - to read the tab you're on</span><span class="perm-x">+</span></span>
-        <span class="perm-d">Asks your browser for the current tab's address so it can remember your language per website. It keeps only the bare domain (e.g. <code>ynet.co.il</code>) - never the full URL or page contents.</span>
-      </button>
-    </div>
-  </div>
 </section>
 
 <!-- FREE -->
