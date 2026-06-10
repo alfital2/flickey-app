@@ -1,0 +1,162 @@
+/* FlicKey shared component mechanics - used by every skin.
+   Colours come from CSS variables the skin sets; the macOS theater is a
+   self-contained dark "screen" so it reads as a screenshot in any palette.
+   Skins may override any of these rules for deeper theming. */
+
+:root{
+  --fk-accent:#6A47F2;
+  --fk-accent2:#2D9EFA;
+  --fk-grad:linear-gradient(120deg,var(--fk-accent),var(--fk-accent2));
+  --fk-on-accent:#fff;
+  --fk-ink:#16131c;
+  --fk-rad:16px;
+  --fk-panel:#fff;
+  --fk-panel-2:#f1eef7;
+  --fk-line:rgba(0,0,0,.14);
+  --fk-line-strong:rgba(0,0,0,.3);
+  --fk-script:'Inter','Heebo','Noto Sans Arabic',sans-serif;
+  --fk-mono:'JetBrains Mono','Heebo','Noto Sans Arabic',monospace;
+}
+
+/* ---------------- reveal-on-scroll ---------------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+
+/* ---------------- demo field + flash ---------------- */
+.field{position:relative;background:var(--fk-panel-2);border:1px solid var(--fk-line);border-radius:var(--fk-rad);
+  padding:24px;min-height:96px;display:flex;align-items:center;transition:border-color .3s}
+.field:focus-within{border-color:var(--fk-accent)}
+.field input{width:100%;background:transparent;border:none;outline:none;color:var(--fk-ink);
+  font-size:31px;font-weight:600;font-family:var(--fk-mono);letter-spacing:-.01em}
+.field.he input{direction:rtl;text-align:right;font-family:var(--fk-script)}
+.flash{position:absolute;inset:0;border-radius:var(--fk-rad);background:var(--fk-grad);opacity:0;pointer-events:none}
+.flash.go{animation:fk-flash .55s ease}
+@keyframes fk-flash{0%{opacity:0}30%{opacity:.18}100%{opacity:0}}
+
+/* ---------------- language toggle pill ---------------- */
+.langpill{display:inline-flex;align-items:center;background:var(--fk-panel-2);border:1px solid var(--fk-line-strong);
+  border-radius:10px;padding:3px;font-size:12px;font-weight:700;cursor:pointer;position:relative;font-family:var(--fk-mono)}
+.langpill span{position:relative;z-index:2;padding:4px 11px;border-radius:7px;color:var(--fk-ink);opacity:.5;transition:opacity .3s,color .3s;min-width:34px;text-align:center}
+.langpill .knob{position:absolute;z-index:1;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);background:var(--fk-ink);border-radius:7px;transition:transform .35s cubic-bezier(.2,.85,.25,1),background .3s}
+.langpill[data-side="b"] .knob{transform:translateX(100%);background:var(--fk-grad)}
+.langpill[data-side="a"] span.a,.langpill[data-side="b"] span.b{color:var(--fk-on-accent);opacity:1}
+
+/* ---------------- keycaps ---------------- */
+.key{font-family:var(--fk-mono);font-size:14px;font-weight:700;background:var(--fk-panel);color:var(--fk-ink);
+  border:1px solid var(--fk-line-strong);border-bottom-width:3px;border-radius:8px;padding:6px 12px;display:inline-block;
+  transition:transform .12s,background .15s,color .15s,border-color .15s}
+.key.press{transform:translateY(2px);background:var(--fk-grad);color:var(--fk-on-accent);border-color:transparent}
+
+/* fix button spin */
+.flip-spin svg{animation:fk-spin .5s cubic-bezier(.4,0,.2,1)}
+@keyframes fk-spin{to{transform:rotate(360deg)}}
+
+/* =====================================================================
+   macOS auto-switch theater - a self-contained dark screen
+   ===================================================================== */
+.macframe{position:relative;width:100%;max-width:920px;margin:0 auto;aspect-ratio:3/2;border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);overflow:hidden;isolation:isolate;
+  background:radial-gradient(120% 120% at 70% 0%,#3a3566 0%,#241f44 38%,#11203c 72%,#0b1730 100%);
+  box-shadow:0 50px 110px -45px rgba(0,0,0,.6)}
+.macframe::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 120%,rgba(106,71,242,.25),transparent 70%);pointer-events:none}
+.menubar{position:absolute;top:0;left:0;right:0;height:30px;z-index:5;display:flex;align-items:center;
+  justify-content:space-between;padding:0 13px;background:rgba(8,8,16,.34);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07);font-size:12.5px;color:#f3f3f7;font-weight:500;font-family:var(--fk-script)}
+.mb-left{display:flex;align-items:center;gap:17px}
+.mb-left .appname{font-weight:700}
+.mb-left .menus{display:flex;gap:16px;color:rgba(255,255,255,.82)}
+@media(max-width:620px){.mb-left .menus{display:none}}
+.mb-apple{width:14px;height:14px;fill:#fff;opacity:.92}
+.mb-right{display:flex;align-items:center;gap:13px;color:#fff}
+.mb-right svg{opacity:.9}
+.inputpill{font-family:var(--fk-mono);font-weight:700;font-size:11px;color:#fff;
+  background:#2f6cf0;border-radius:6px;padding:3px 8px;min-width:30px;text-align:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.3);transition:background .3s}
+.inputpill.pulse{animation:fk-pillpulse .6s cubic-bezier(.3,.9,.3,1)}
+@keyframes fk-pillpulse{0%{transform:scale(1)}35%{transform:scale(1.22);box-shadow:0 0 0 5px rgba(47,108,240,.35)}100%{transform:scale(1)}}
+.mb-clock{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.mac-stage{position:absolute;inset:30px 0 92px 0;display:grid;place-items:center}  /* bottom reserve keeps windows off the dock */
+.ghostwin{position:absolute;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07)}
+.gw1{width:46%;height:52%;top:14%;left:9%;transform:rotate(-1.5deg)}
+.gw2{width:42%;height:46%;top:22%;right:8%;transform:rotate(2deg)}
+.appwin{position:relative;z-index:2;width:min(62%,440px);background:#17161f;border-radius:13px;
+  border:1px solid rgba(255,255,255,.1);overflow:hidden;box-shadow:0 30px 60px -24px rgba(0,0,0,.7);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.appwin.pop{animation:fk-winpop .5s cubic-bezier(.2,.9,.25,1)}
+@keyframes fk-winpop{0%{transform:translateY(8px) scale(.985);opacity:.85}100%{transform:none;opacity:1}}
+.win-bar{height:38px;display:flex;align-items:center;padding:0 14px;gap:8px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07)}
+.win-bar .tl{width:11px;height:11px;border-radius:50%}
+.win-bar .win-title{margin-left:8px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.72);font-family:var(--fk-script)}
+.win-icon{margin-left:auto;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;font-family:var(--fk-mono)}
+.win-body{padding:20px 18px 22px;min-height:150px}
+.bubble{display:inline-block;max-width:85%;padding:9px 13px;border-radius:13px;font-size:14px;line-height:1.45;
+  background:rgba(255,255,255,.08);color:#e9e8f2;margin-bottom:14px;font-family:var(--fk-script)}
+.composer{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:11px;padding:11px 14px}
+.composer.rtl{direction:rtl}
+.compose-text{font-size:15.5px;font-weight:500;color:#f3f2fa;font-family:var(--fk-script);white-space:nowrap}
+.composer.term{font-family:var(--fk-mono)}
+.composer.term .compose-text{font-family:var(--fk-mono);font-size:14px}
+.caret{width:2px;height:18px;background:#2f6cf0;border-radius:1px;animation:fk-blink 1.1s steps(1) infinite}
+@keyframes fk-blink{50%{opacity:0}}
+.typing-note{margin-top:13px;font-size:12.5px;color:rgba(255,255,255,.45);font-family:var(--fk-script)}
+.typing-note b{color:#7fb7ff;font-weight:600}
+.bview{display:none}
+.btabstrip{display:flex;gap:5px;align-items:flex-end;border-bottom:1px solid rgba(255,255,255,.08);margin:-4px -2px 0;padding:0 2px}
+.btab{position:relative;flex:1 1 0;min-width:0;max-width:150px;display:flex;align-items:center;gap:7px;padding:8px 9px 9px;border:none;background:transparent;cursor:pointer;color:rgba(255,255,255,.6);border-radius:8px 8px 0 0;transition:background .2s,color .2s;font-family:inherit}
+.btab:hover{background:rgba(255,255,255,.05);color:#fff}
+.btab[aria-current="true"]{background:rgba(255,255,255,.07);color:#fff}
+.btab[aria-current="true"]::after{content:"";position:absolute;left:6px;right:6px;bottom:-1px;height:2px;border-radius:2px;background:var(--fk-grad)}
+.bfav{width:14px;height:14px;border-radius:4px;flex:0 0 auto}
+.blabel{font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--fk-script);letter-spacing:.01em}
+.bclose{margin-left:auto;width:16px;height:16px;border-radius:4px;display:grid;place-items:center;font-size:14px;line-height:1;color:rgba(255,255,255,.4);flex:0 0 auto}
+.btab:hover .bclose{color:#fff}
+.baddr{display:flex;align-items:center;gap:10px;margin:11px 0 2px;padding:7px 13px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.09);border-radius:9px}
+.baddr .navarr{display:flex;gap:9px;color:rgba(255,255,255,.4)}
+.baddr .lock{font-size:11px;color:rgba(255,255,255,.4)}
+.burl{font-family:var(--fk-script);font-size:13.5px;color:#fff;letter-spacing:.01em}
+.bpage{position:relative;text-align:center;padding:14px 18px 12px}
+.bwordmark{font-size:27px;font-weight:800;letter-spacing:-.02em;margin-bottom:12px;font-family:var(--fk-script)}
+.bsearch{display:flex;align-items:center;gap:11px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:10px 20px;max-width:360px;margin:0 auto}
+.bsearch.rtl{direction:rtl}
+.bsearch svg{width:16px;height:16px;stroke:rgba(255,255,255,.4);stroke-width:2;flex:0 0 auto}
+.bquery{font-size:15.5px;color:#fff;font-family:var(--fk-script);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* mini content grid (mock article tiles) */
+.bcards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px auto 0;max-width:380px}
+.bcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:7px;text-align:left}
+.bthumb{height:26px;border-radius:6px;margin-bottom:6px;
+  background:linear-gradient(150deg,var(--bsite,#5b6cf0),rgba(255,255,255,.06))}
+.bline{height:6px;border-radius:4px;background:rgba(255,255,255,.2)}
+.bline.sm{width:62%;margin-top:5px;background:rgba(255,255,255,.12)}
+@media(max-width:520px){.bcards{max-width:320px;gap:7px}.bthumb{height:30px}}
+.bflash{position:absolute;inset:0;border-radius:14px;background:var(--fk-grad);opacity:0;pointer-events:none}
+.bflash.go{animation:fk-flash .55s ease}
+.dock{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:flex-end;gap:11px;
+  padding:8px 12px;background:rgba(255,255,255,.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:16px;
+  box-shadow:0 16px 40px -16px rgba(0,0,0,.6)}
+.dockapp{position:relative;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;cursor:pointer;border:none;
+  font-family:var(--fk-script);font-weight:800;font-size:16px;color:#fff;transition:transform .2s cubic-bezier(.3,.9,.3,1);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 10px rgba(0,0,0,.3)}
+.dockapp:hover{transform:translateY(-7px) scale(1.06)}
+.dockapp[aria-current="true"]{transform:translateY(-4px)}
+.dockapp[aria-current="true"]::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#fff;opacity:.85}
+@media(max-width:520px){.appwin{width:78%}.dockapp{width:38px;height:38px}}
+
+/* ---------------- permission accordions (baseline; skins may override) ---------------- */
+.perm{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--fk-line);
+  padding:18px 4px;cursor:pointer;color:var(--fk-ink);font:inherit;transition:background .2s}
+.perm-h{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
+.perm-h b{font-weight:700}
+.perm-x{color:var(--fk-ink);opacity:.5;font-size:22px;line-height:1;font-weight:300;transition:transform .25s,opacity .25s}
+.perm.open .perm-x{transform:rotate(45deg);opacity:1}
+.perm-d{display:block;opacity:0;font-size:14px;line-height:1.6;max-width:72ch;
+  max-height:0;overflow:hidden;transition:max-height .32s ease,opacity .25s,margin-top .32s}
+.perm.open .perm-d{max-height:260px;opacity:.75;margin-top:10px}
+.perm-d code{font-family:var(--fk-mono);font-size:12.5px}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .caret{animation:none}
+}

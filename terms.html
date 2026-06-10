@@ -9,51 +9,73 @@
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#08070d" />
+<meta name="theme-color" content="#EEF0FB" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#08070d;--bg-2:#0c0b14;--ink:#f4f3fb;--ink-soft:#a7a4bd;--ink-faint:#6f6c86;
-    --g1:#6A47F2;--g2:#2D9EFA;--line:rgba(255,255,255,.08);--glass:rgba(255,255,255,.04);--glass-2:rgba(255,255,255,.06);
-    --radius:20px;--grad:linear-gradient(120deg,var(--g1),var(--g2));
-    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;
+    --bg:#EEF0FB;--ink:#1B1A2E;--ink-soft:#5b576f;--ink-faint:#8a86a3;
+    --g1:#7C5CFA;--g2:#2D9EFA;--grad:linear-gradient(135deg,var(--g1),var(--g2));
+    --line:rgba(60,55,120,.14);
+    --sans:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+    --glass:rgba(255,255,255,.42);
+    --glass-fx:blur(16px) saturate(180%);
+    --glass-shadow:inset 0 1.5px 1px rgba(255,255,255,.9),inset 0 -18px 30px -26px rgba(72,48,150,.35),0 26px 50px -26px rgba(60,55,120,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;
-    background-image:radial-gradient(60% 50% at 12% -5%,rgba(106,71,242,.16),transparent 60%),radial-gradient(50% 45% at 100% 0%,rgba(45,158,250,.12),transparent 60%);
-    background-attachment:fixed}
+  html{background:var(--bg)}
+  body{background:transparent;color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+  /* fixed, out-of-focus colour field (matches the site) */
+  .aurora{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+  .aurora span{position:absolute;border-radius:50%;filter:blur(80px)}
+  .aurora .a1{width:60vw;height:60vw;top:-12vh;left:-8vw;background:radial-gradient(circle,rgba(168,150,255,.9),transparent 68%);opacity:.85}
+  .aurora .a2{width:52vw;height:52vw;top:18vh;right:-12vw;background:radial-gradient(circle,rgba(140,196,255,.85),transparent 68%);opacity:.7}
+  .aurora .a3{width:56vw;height:56vw;bottom:-14vh;left:4vw;background:radial-gradient(circle,rgba(150,232,205,.8),transparent 68%);opacity:.6}
+  .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:-1;filter:blur(3px);
+    box-shadow:inset -7px -10px 20px rgba(108,98,178,.3),inset 8px 10px 18px rgba(255,255,255,.85),0 24px 42px -16px rgba(60,55,120,.4)}
+  .orb::after{content:"";position:absolute;top:14%;left:19%;width:30%;height:23%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,0))}
+  .orb.a{width:150px;height:150px;background:radial-gradient(circle at 36% 30%,#fff,#e7deff 38%,#b3a0ff);top:14vh;left:5vw}
+  .orb.b{width:96px;height:96px;background:radial-gradient(circle at 36% 30%,#fff,#dcefff 38%,#8fc6ff);bottom:16vh;right:7vw}
   ::selection{background:var(--g1);color:#fff}
-  a{color:#a99bff}
-  a:hover{color:#c4b9ff}
-  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
-  header{border-bottom:1px solid var(--line);background:rgba(8,7,13,.7);backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}
+  a{color:var(--g1)}a:hover{color:#5b3fe0}
+  .wrap{max-width:780px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+  header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
-  .brand .mark{width:27px;height:27px;border-radius:8px;background:var(--grad);box-shadow:0 5px 14px -4px rgba(106,71,242,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+  .brand .mark{width:28px;height:28px;border-radius:9px;background:var(--grad);box-shadow:0 6px 14px -4px rgba(124,92,250,.6),inset 0 1px 0 rgba(255,255,255,.4)}
   .nav a.back{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
   .nav a.back:hover{color:var(--ink)}
   main{padding:56px 0 90px}
-  h1{font-weight:800;font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.025em;margin-bottom:10px}
+  h1{font-weight:800;font-size:clamp(34px,6vw,54px);line-height:1.04;letter-spacing:-.03em;margin-bottom:10px}
   h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .updated{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:36px}
-  h2{font-weight:700;font-size:23px;margin:38px 0 10px;letter-spacing:-.01em}
+  h2{font-weight:800;font-size:22px;margin:38px 0 10px;letter-spacing:-.01em}
   p{color:var(--ink-soft);margin-bottom:14px}
   ul{margin:0 0 14px 22px;color:var(--ink-soft)}
   li{margin-bottom:7px}
-  b{font-weight:600;color:var(--ink)}
+  b{font-weight:700;color:var(--ink)}
   .lead{font-size:18px;color:var(--ink);margin-bottom:8px}
-  .box{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:22px 0;backdrop-filter:blur(6px)}
-  .box h3{font-weight:700;font-size:18px;margin-bottom:6px;color:var(--ink)}
+  .box{position:relative;isolation:isolate;background:var(--glass);-webkit-backdrop-filter:var(--glass-fx);backdrop-filter:var(--glass-fx);
+    border-radius:20px;padding:20px 22px;margin:22px 0;box-shadow:var(--glass-shadow)}
+  .box::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1.5px;
+    background:linear-gradient(135deg,rgba(255,255,255,1),rgba(255,255,255,.2) 24%,rgba(255,255,255,0) 48%,rgba(255,255,255,.24) 72%,rgba(255,255,255,.95)) border-box;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+            mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+  .box h3{font-weight:800;font-size:18px;margin-bottom:6px;color:var(--ink)}
   .price{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
-  code{font-family:var(--mono);font-size:13px;background:var(--glass-2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--ink)}
+  code{font-family:var(--mono);font-size:13px;background:rgba(255,255,255,.5);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--ink)}
   .note{font-size:13px;color:var(--ink-faint);font-style:italic}
   footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
   footer a{color:var(--ink-soft)}
 </style>
 </head>
 <body>
+
+<div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="orb a"></div><div class="orb b"></div>
+
 <header>
   <div class="wrap nav">
     <a class="brand" href="/"><span class="mark"></span>FlicKey</a>
