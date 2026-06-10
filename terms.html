@@ -9,54 +9,61 @@
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#F6F2EA" />
+<meta name="theme-color" content="#08070d" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <style>
-  :root{--paper:#F6F2EA;--card:#FCFAF4;--ink:#191512;--ink-soft:#5b5349;--hair:rgba(25,21,18,.14);
-    --g1:#6A47F2;--g2:#2D9EFA;--grad:linear-gradient(120deg,var(--g1),var(--g2));
-    --serif:'Fraunces',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace}
+  :root{
+    --bg:#08070d;--bg-2:#0c0b14;--ink:#f4f3fb;--ink-soft:#a7a4bd;--ink-faint:#6f6c86;
+    --g1:#6A47F2;--g2:#2D9EFA;--line:rgba(255,255,255,.08);--glass:rgba(255,255,255,.04);--glass-2:rgba(255,255,255,.06);
+    --radius:20px;--grad:linear-gradient(120deg,var(--g1),var(--g2));
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(60% 50% at 12% -5%,rgba(106,71,242,.16),transparent 60%),radial-gradient(50% 45% at 100% 0%,rgba(45,158,250,.12),transparent 60%);
+    background-attachment:fixed}
   ::selection{background:var(--g1);color:#fff}
-  a{color:var(--g1)}
+  a{color:#a99bff}
+  a:hover{color:#c4b9ff}
   .wrap{max-width:760px;margin:0 auto;padding:0 28px}
-  header{border-bottom:1px solid var(--hair);background:rgba(246,242,234,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5}
+  header{border-bottom:1px solid var(--line);background:rgba(8,7,13,.7);backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:620;font-size:20px}
-  .brand .mark{width:26px;height:26px;border-radius:7px;background:var(--grad);box-shadow:0 4px 10px -3px rgba(106,71,242,.5)}
-  .nav a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
-  .nav a:hover{color:var(--ink)}
-  main{padding:54px 0 90px}
-  h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.02em;margin-bottom:10px}
-  .updated{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:36px}
-  h2{font-family:var(--serif);font-weight:600;font-size:24px;margin:38px 0 10px;letter-spacing:-.01em}
-  p{color:#2a2620;margin-bottom:14px}
-  ul{margin:0 0 14px 22px;color:#2a2620}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand .mark{width:27px;height:27px;border-radius:8px;background:var(--grad);box-shadow:0 5px 14px -4px rgba(106,71,242,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+  .nav a.back{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+  .nav a.back:hover{color:var(--ink)}
+  main{padding:56px 0 90px}
+  h1{font-weight:800;font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.025em;margin-bottom:10px}
+  h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .updated{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:36px}
+  h2{font-weight:700;font-size:23px;margin:38px 0 10px;letter-spacing:-.01em}
+  p{color:var(--ink-soft);margin-bottom:14px}
+  ul{margin:0 0 14px 22px;color:var(--ink-soft)}
   li{margin-bottom:7px}
-  b{font-weight:600}
-  .lead{font-size:18px;color:var(--ink-soft);margin-bottom:8px}
-  .box{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:20px 22px;margin:22px 0}
-  .box h3{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:6px}
-  code{font-family:var(--mono);font-size:13px;background:rgba(25,21,18,.06);padding:1px 6px;border-radius:5px}
-  .note{font-size:13px;color:var(--ink-soft);font-style:italic}
-  footer{border-top:1px solid var(--hair);padding:26px 0;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  b{font-weight:600;color:var(--ink)}
+  .lead{font-size:18px;color:var(--ink);margin-bottom:8px}
+  .box{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:22px 0;backdrop-filter:blur(6px)}
+  .box h3{font-weight:700;font-size:18px;margin-bottom:6px;color:var(--ink)}
+  .price{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+  code{font-family:var(--mono);font-size:13px;background:var(--glass-2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--ink)}
+  .note{font-size:13px;color:var(--ink-faint);font-style:italic}
+  footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
   footer a{color:var(--ink-soft)}
-  .price{font-family:var(--serif);font-weight:600;font-size:20px}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="/" style="text-decoration:none;color:inherit"><span class="mark"></span>FlicKey</a>
-    <a href="/">← Back to site</a>
+    <a class="brand" href="/"><span class="mark"></span>FlicKey</a>
+    <a class="back" href="/">← Back to site</a>
   </div>
 </header>
 
 <main>
 <div class="wrap">
-  <h1>Terms &amp; Refund Policy</h1>
+  <h1>Terms &amp; <span class="grad">Refund Policy</span></h1>
   <div class="updated">Last updated: 10 June 2026</div>
 
   <p class="lead">FlicKey is a small macOS menu-bar utility that fixes wrong-keyboard-layout typing and manages your input language per app and per website.</p>
