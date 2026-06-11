@@ -81,31 +81,32 @@
      supported scripts. Each cap slow-presses on its own schedule: the side
      wall compresses as it goes down, and while pressed it blurs hard -
      receding far into the background - then releases back into focus. */
-  .cap{position:fixed;z-index:-1;pointer-events:none;border-radius:22%;
+  /* Keycap = a molded body (the bevelled sides) + a raised, dished top face
+     (::before) with the legend on it + a thick front edge (the solid offset
+     shadow). `backwards` fill makes caps show the tilted/blurred 0% frame
+     during their stagger delay - so none ever flash flat & sharp on load. */
+  .cap{position:fixed;z-index:-1;pointer-events:none;border-radius:26%;
     display:grid;place-items:center;
     font-family:var(--sans),'Heebo','Noto Sans Arabic',system-ui,sans-serif;
-    font-weight:800;font-size:calc(var(--s) * .42);line-height:1;color:var(--ink2);
+    font-weight:800;font-size:calc(var(--s) * .38);line-height:1;color:var(--ink2);
     width:var(--s);height:var(--s);
-    animation:capLoop 8s ease-in-out var(--d,0s) infinite}
-  .cap::before{content:"";position:absolute;inset:9%;border-radius:20%;z-index:-1;
-    background:linear-gradient(157deg,rgba(255,255,255,.7),rgba(255,255,255,0) 58%);
-    box-shadow:inset 0 2px 2px rgba(255,255,255,.9),inset 0 -4px 8px rgba(96,80,158,.16)}
+    background:linear-gradient(158deg,var(--body-hi),var(--body-lo));
+    animation:capLoop 8s ease-in-out var(--d,0s) infinite backwards}
+  .cap::before{content:"";position:absolute;inset:15%;border-radius:32%;
+    background:linear-gradient(158deg,#ffffff,var(--face));
+    box-shadow:inset 0 2px 1px rgba(255,255,255,.95),inset 0 -8px 11px rgba(58,42,108,.22),0 1px 2px rgba(58,42,108,.28)}
   @keyframes capLoop{
-    0%,16%  {transform:translateY(0) rotate(var(--r,0deg));filter:blur(1.8px);
-             box-shadow:0 12px 0 var(--side),0 30px 38px -12px rgba(60,55,120,.5),inset 0 3px 4px rgba(255,255,255,.85)}
-    34%,52% {transform:translateY(10px) rotate(var(--r,0deg));filter:blur(8px);
-             box-shadow:0 3px 0 var(--side),0 10px 16px -8px rgba(60,55,120,.3),inset 0 3px 4px rgba(255,255,255,.85)}
-    72%,100%{transform:translateY(0) rotate(var(--r,0deg));filter:blur(1.8px);
-             box-shadow:0 12px 0 var(--side),0 30px 38px -12px rgba(60,55,120,.5),inset 0 3px 4px rgba(255,255,255,.85)}}
-  .cap.k1{--s:128px;top:10vh;left:3.5vw;--r:-7deg;--d:0s;
-    background:linear-gradient(157deg,#ffffff,#d6cbff 46%,#b3a0ff);--side:#937dee;--ink2:#5b46b8}
-  .cap.k2{--s:104px;top:48vh;right:4.5vw;--r:6deg;--d:1.3s;
-    background:linear-gradient(157deg,#ffffff,#d3e8ff 46%,#8fc6ff);--side:#6da6ea;--ink2:#2f6cb4}
-  .cap.k3{--s:96px;bottom:9vh;left:7vw;--r:-5deg;--d:2.6s;
-    background:linear-gradient(157deg,#ffffff,#d2f6e8 46%,#86e6c4);--side:#5cc9a1;--ink2:#1f8a64}
-  .cap.k4{--s:84px;top:27vh;right:15vw;--r:11deg;--d:3.9s;
-    background:linear-gradient(157deg,#ffffff,#ffe1d2 46%,#ffbf9e);--side:#ef9b71;--ink2:#b65d33}
-  @media (prefers-reduced-motion:reduce){.cap{animation:none;filter:blur(3px);box-shadow:0 10px 0 var(--side),0 24px 34px -12px rgba(60,55,120,.4)}}
+    0%,16%  {transform:translateY(0) rotate(var(--r,0deg));filter:blur(1.6px);
+             box-shadow:0 14px 0 var(--side),0 32px 40px -12px rgba(60,55,120,.5),inset 0 3px 3px rgba(255,255,255,.7),inset 0 -12px 16px rgba(58,42,108,.30)}
+    34%,52% {transform:translateY(12px) rotate(var(--r,0deg));filter:blur(8px);
+             box-shadow:0 3px 0 var(--side),0 10px 16px -8px rgba(60,55,120,.3),inset 0 3px 3px rgba(255,255,255,.7),inset 0 -7px 11px rgba(58,42,108,.24)}
+    72%,100%{transform:translateY(0) rotate(var(--r,0deg));filter:blur(1.6px);
+             box-shadow:0 14px 0 var(--side),0 32px 40px -12px rgba(60,55,120,.5),inset 0 3px 3px rgba(255,255,255,.7),inset 0 -12px 16px rgba(58,42,108,.30)}}
+  .cap.k1{--s:128px;top:10vh;left:3.5vw;--r:-7deg;--d:0s;--body-hi:#efeaff;--body-lo:#bcacf7;--face:#e7e0ff;--side:#8f78e6;--ink2:#5b46b8}
+  .cap.k2{--s:104px;top:48vh;right:4.5vw;--r:6deg;--d:1.3s;--body-hi:#eaf4ff;--body-lo:#a9d2fb;--face:#e0f0ff;--side:#5f9fe6;--ink2:#2f6cb4}
+  .cap.k3{--s:96px;bottom:9vh;left:7vw;--r:-5deg;--d:2.6s;--body-hi:#e8fbf3;--body-lo:#9aebcf;--face:#dffaf0;--side:#4ec39a;--ink2:#1f8a64}
+  .cap.k4{--s:84px;top:27vh;right:15vw;--r:11deg;--d:3.9s;--body-hi:#fff0e8;--body-lo:#ffceb3;--face:#ffe9dd;--side:#ef9b71;--ink2:#b65d33}
+  @media (prefers-reduced-motion:reduce){.cap{animation:none;filter:blur(2px);transform:rotate(var(--r));box-shadow:0 12px 0 var(--side),0 26px 34px -12px rgba(60,55,120,.4),inset 0 -12px 16px rgba(58,42,108,.30)}}
   @media (max-width:760px){.cap.k4{display:none}}
   /* ==== Apple Liquid Glass ====
      Three layers, like the real material:
