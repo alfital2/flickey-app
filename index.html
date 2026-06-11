@@ -81,37 +81,49 @@
      supported scripts. Each cap slow-presses on its own schedule: the side
      wall compresses as it goes down, and while pressed it blurs hard -
      receding far into the background - then releases back into focus. */
-  /* Keycap = a molded body (the bevelled sides) + a raised, dished top face
-     (::before) with the legend on it + a thick front edge (the solid offset
-     shadow). `backwards` fill makes caps show the tilted/blurred 0% frame
-     during their stagger delay - so none ever flash flat & sharp on load. */
-  .cap{position:fixed;z-index:-1;pointer-events:none;border-radius:19%;
+  /* Keycap, built like the reference: a saturated molded BODY whose visible
+     parts are the walls (thin top/sides, THICK bottom skirt - you're viewing
+     the key slightly from above), with a raised light TOP FACE high on the
+     body that casts a shadow onto the skirt, plus a glossy lip on the bottom
+     edge. The legend sits on the face. `backwards` fill keeps delayed caps
+     tilted+blurred during their stagger - never flat & sharp on load. */
+  .cap{position:fixed;z-index:-1;pointer-events:none;border-radius:17%;
     display:grid;place-items:center;
     font-family:var(--sans),'Heebo','Noto Sans Arabic',system-ui,sans-serif;
-    font-weight:800;font-size:calc(var(--s) * .36);line-height:1;color:var(--ink2);
+    font-weight:800;font-size:calc(var(--s) * .34);line-height:1;color:var(--ink2);
     width:var(--s);height:var(--s);
-    background:linear-gradient(180deg,var(--body-hi),var(--body-lo));}
-  /* sculpted, dished top face - inset a touch more at the bottom so it reads as
-     a forward-tilted key surface; the rim around it is the (darker) body wall. */
-  .cap::before{content:"";position:absolute;inset:11% 12% 17% 12%;border-radius:24% / 30%;
-    background:linear-gradient(180deg,#ffffff,var(--face));
-    box-shadow:inset 0 3px 2px rgba(255,255,255,.95),inset 0 -9px 12px rgba(58,42,108,.28),0 2px 3px rgba(58,42,108,.3)}
-  .cap-l{position:relative;z-index:1}   /* legend sits ON the top face, not under it */
-  /* the press loop + a stable resting state both live here, driven via animation
-     so `backwards` fill keeps delayed caps tilted+blurred (never flat/sharp). */
-  .cap{animation:capLoop 8s ease-in-out var(--d,0s) infinite backwards}
+    background:linear-gradient(180deg,var(--wt) 0%,var(--wb) 55%,var(--wb) 86%,var(--lip) 100%);
+    will-change:transform,filter;
+    animation:capLoop 8s ease-in-out var(--d,0s) infinite backwards}
+  /* raised top face: high on the body, thin side walls, thick bottom skirt */
+  .cap::before{content:"";position:absolute;left:8%;right:8%;top:6%;bottom:21%;
+    border-radius:12% 12% 14% 14% / 14% 14% 17% 17%;
+    background:linear-gradient(180deg,var(--fh) 0%,var(--fc) 100%);
+    box-shadow:inset 0 2px 1px rgba(255,255,255,.95),
+               inset 0 -5px 8px rgba(58,42,108,.10),
+               0 5px 7px -2px rgba(58,42,108,.42)}   /* face's shadow on the skirt */
+  /* glossy light catch along the bottom lip of the skirt */
+  .cap::after{content:"";position:absolute;left:16%;right:16%;bottom:3.5%;height:6%;
+    border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,0))}
+  .cap-l{position:relative;z-index:1;transform:translateY(-.22em);
+    text-shadow:0 1px 1px rgba(255,255,255,.5)}     /* centered on the FACE, softly printed */
   @keyframes capLoop{
-    0%,16%  {transform:translateY(0) rotate(var(--r,0deg));filter:blur(1px);
-             box-shadow:0 15px 0 var(--side),0 34px 40px -14px rgba(60,55,120,.5),inset 0 3px 3px rgba(255,255,255,.75),inset 0 -13px 16px rgba(58,42,108,.32)}
-    34%,52% {transform:translateY(13px) rotate(var(--r,0deg));filter:blur(8px);
-             box-shadow:0 4px 0 var(--side),0 10px 16px -8px rgba(60,55,120,.3),inset 0 3px 3px rgba(255,255,255,.75),inset 0 -7px 11px rgba(58,42,108,.24)}
-    72%,100%{transform:translateY(0) rotate(var(--r,0deg));filter:blur(1px);
-             box-shadow:0 15px 0 var(--side),0 34px 40px -14px rgba(60,55,120,.5),inset 0 3px 3px rgba(255,255,255,.75),inset 0 -13px 16px rgba(58,42,108,.32)}}
-  .cap.k1{--s:128px;top:10vh;left:3.5vw;--r:-7deg;--d:0s;--body-hi:#efeaff;--body-lo:#bcacf7;--face:#e7e0ff;--side:#8f78e6;--ink2:#5b46b8}
-  .cap.k2{--s:104px;top:48vh;right:4.5vw;--r:6deg;--d:1.3s;--body-hi:#eaf4ff;--body-lo:#a9d2fb;--face:#e0f0ff;--side:#5f9fe6;--ink2:#2f6cb4}
-  .cap.k3{--s:96px;bottom:9vh;left:7vw;--r:-5deg;--d:2.6s;--body-hi:#e8fbf3;--body-lo:#9aebcf;--face:#dffaf0;--side:#4ec39a;--ink2:#1f8a64}
-  .cap.k4{--s:84px;top:27vh;right:15vw;--r:11deg;--d:3.9s;--body-hi:#fff0e8;--body-lo:#ffceb3;--face:#ffe9dd;--side:#ef9b71;--ink2:#b65d33}
-  @media (prefers-reduced-motion:reduce){.cap{animation:none;filter:blur(2px);transform:rotate(var(--r));box-shadow:0 12px 0 var(--side),0 26px 34px -12px rgba(60,55,120,.4),inset 0 -12px 16px rgba(58,42,108,.30)}}
+    0%,16%  {transform:translate3d(0,0,0) rotate(var(--r,0deg));filter:blur(1px);
+             box-shadow:0 26px 32px -14px rgba(60,55,120,.55),0 8px 12px -6px rgba(60,55,120,.35)}
+    34%,52% {transform:translate3d(0,13px,0) rotate(var(--r,0deg));filter:blur(8px);
+             box-shadow:0 8px 14px -7px rgba(60,55,120,.32),0 3px 6px -3px rgba(60,55,120,.22)}
+    72%,100%{transform:translate3d(0,0,0) rotate(var(--r,0deg));filter:blur(1px);
+             box-shadow:0 26px 32px -14px rgba(60,55,120,.55),0 8px 12px -6px rgba(60,55,120,.35)}}
+  .cap.k1{--s:128px;top:10vh;left:3.5vw;--r:-7deg;--d:0s;
+    --wt:#c6b8f7;--wb:#9f88e8;--lip:#d7cbfa;--fh:#ffffff;--fc:#e4dcfd;--ink2:#5b46b8}
+  .cap.k2{--s:104px;top:48vh;right:4.5vw;--r:6deg;--d:1.3s;
+    --wt:#b5d9fc;--wb:#7fb5f0;--lip:#cde6fd;--fh:#ffffff;--fc:#e1f0ff;--ink2:#2f6cb4}
+  .cap.k3{--s:96px;bottom:9vh;left:7vw;--r:-5deg;--d:2.6s;
+    --wt:#aeeed7;--wb:#69d2ac;--lip:#c8f6e4;--fh:#ffffff;--fc:#defaef;--ink2:#1f8a64}
+  .cap.k4{--s:84px;top:27vh;right:15vw;--r:11deg;--d:3.9s;
+    --wt:#ffd8c1;--wb:#f5a87e;--lip:#ffe4d2;--fh:#ffffff;--fc:#ffeadd;--ink2:#b65d33}
+  @media (prefers-reduced-motion:reduce){.cap{animation:none;filter:blur(2px);transform:rotate(var(--r));
+    box-shadow:0 22px 30px -14px rgba(60,55,120,.5),0 7px 10px -5px rgba(60,55,120,.3)}}
   @media (max-width:760px){.cap.k4{display:none}}
   /* ==== Apple Liquid Glass ====
      Three layers, like the real material:
@@ -124,6 +136,7 @@
     background:rgba(255,255,255,.14)!important;
     -webkit-backdrop-filter:blur(var(--lg-blur)) saturate(195%) brightness(1.06);
     backdrop-filter:blur(var(--lg-blur)) saturate(195%) brightness(1.06);
+    -webkit-transform:translateZ(0);transform:translateZ(0);  /* own compositor layer: avoids glass repaint flashes */
     box-shadow:
       inset 0 1.5px 1px rgba(255,255,255,.95),
       inset 1.5px 0 1px rgba(255,255,255,.45),
@@ -135,6 +148,7 @@
     padding:var(--lg-rim);
     -webkit-backdrop-filter:blur(34px) saturate(240%) brightness(1.2);
     backdrop-filter:blur(34px) saturate(240%) brightness(1.2);
+    -webkit-transform:translateZ(0);transform:translateZ(0);  /* pin to its own layer: stops Safari's masked-backdrop flicker */
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
             mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
@@ -246,7 +260,7 @@
   .nc-gh{color:var(--ink-soft);opacity:.65}
   .nc-gh svg{width:22px;height:22px;fill:currentColor;display:block}
   .nc-wire{position:relative;flex:1;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--fk-line) 0 3px,transparent 3px 7px)}
-  .nc-packet{position:absolute;top:50%;left:0;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--grad);box-shadow:0 0 8px 1px rgba(106,71,242,.55);animation:ncTravel 3.4s cubic-bezier(.5,0,.5,1) infinite}
+  .nc-packet{position:absolute;top:50%;left:0;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--grad);box-shadow:0 0 8px 1px rgba(106,71,242,.55);will-change:left,opacity,transform;animation:ncTravel 3.4s cubic-bezier(.5,0,.5,1) infinite}
   @keyframes ncTravel{
     0%{left:0;opacity:0;transform:scale(.5)}
     9%{opacity:1;transform:scale(1)}
@@ -506,12 +520,19 @@
   var LETTERS = ['ש','Я','ض','Ω','Ї','A'];
   var LOOP = 8000;                     // must match the capLoop duration
   var SWAP_AT = 3400;                  // mid-press: inside the 34%-52% blurred hold
-  document.querySelectorAll('.cap').forEach(function(cap, i){
+  var caps = Array.prototype.slice.call(document.querySelectorAll('.cap'));
+  var shown = caps.map(function(c){ var l=c.querySelector('.cap-l'); return l?l.textContent:''; });
+  caps.forEach(function(cap, i){
     var el = cap.querySelector('.cap-l'); if(!el) return;   // legend lives in .cap-l (above the top face)
-    var idx = i;                       // k1 starts at ש, k2 at Я, ...
     var delay = parseFloat(getComputedStyle(cap).animationDelay) * 1000 || 0;
     setTimeout(function(){
-      function swap(){ idx = (idx + 1) % LETTERS.length; el.textContent = LETTERS[idx]; }
+      // advance to the next letter NOT currently on any other cap, so two caps
+      // never display the same script at once (6 letters, 4 caps -> always free)
+      function swap(){
+        var j = (LETTERS.indexOf(shown[i]) + 1) % LETTERS.length;
+        while (shown.indexOf(LETTERS[j]) !== -1) j = (j + 1) % LETTERS.length;
+        shown[i] = LETTERS[j]; el.textContent = LETTERS[j];
+      }
       swap();
       setInterval(swap, LOOP);
     }, delay + SWAP_AT);
