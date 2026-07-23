@@ -6,13 +6,13 @@
     <description>In-app updates for FlicKey.</description>
     <language>en</language>
     <item>
-      <title>FlicKey 0.5.1</title>
-      <pubDate>Thu, 23 Jul 2026 11:04:05 +0000</pubDate>
-      <sparkle:version>33</sparkle:version>
-      <sparkle:shortVersionString>0.5.1</sparkle:shortVersionString>
+      <title>FlicKey 0.5.2</title>
+      <pubDate>Thu, 23 Jul 2026 17:36:14 +0000</pubDate>
+      <sparkle:version>34</sparkle:version>
+      <sparkle:shortVersionString>0.5.2</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
       <link>https://flickey.site</link>
-      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/v0.5.1/FlicKey.zip" type="application/octet-stream" sparkle:edSignature="8wCtL830G4q5PYyoRbChmq24zp8LWJsoenzSleCatjhxRIw1Uj4G6IpR7WZx/XaFBKd+z2MO6b2E5xuXqhxEDQ==" length="2581777" />
+      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/v0.5.2/FlicKey.zip" type="application/octet-stream" sparkle:edSignature="OrJSvsVLS/r6js98MdCYLglt9kTrByQqLuW3HQMB1Fqn3PRXG/M6f4PcOFkoagPFmR0htq1eJ2N0I6kvnnDeBg==" length="2592324" />
     </item>
   </channel>
 </rss>
