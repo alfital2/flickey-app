@@ -274,7 +274,7 @@
   document.querySelectorAll('.perm').forEach(function(p){ p.addEventListener('click', function(){ var open=p.classList.toggle('open'); p.setAttribute('aria-expanded', open?'true':'false'); }); });
 
   (function(){ var el=document.getElementById('appVersion'); if(!el||!window.fetch) return;
-    fetch('https://api.github.com/repos/alfital2/flickey-app/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
+    fetch('https://api.github.com/repos/alfital2/FlicKey/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
       .then(function(r){ return r.ok?r.json():null; }).then(function(d){ if(d&&d.tag_name){ el.textContent=d.tag_name[0]==='v'?d.tag_name:'v'+d.tag_name; } }).catch(function(){});
   })();
 
