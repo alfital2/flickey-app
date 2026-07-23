@@ -66,18 +66,19 @@
   .sq-28{width:30px;height:30px;border-radius:10px}.sq-28 svg{width:19px;height:19px}
 
 
-  /* open-source sticker: a shop-style badge pinned to the demo card's corner */
-  .oss-sticker{position:absolute;top:-34px;right:-26px;width:94px;height:94px;border-radius:50%;
+  /* open-source sticker: floats in the hero's right air, next to the drifting keycap */
+  #top .wrap{position:relative}
+  .oss-sticker{position:absolute;top:336px;right:-46px;width:96px;height:96px;border-radius:50%;
     background:var(--grad);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
-    text-align:center;font-weight:800;letter-spacing:.05em;transform:rotate(12deg);z-index:6;text-decoration:none;
+    text-align:center;font-weight:800;letter-spacing:.05em;transform:rotate(20deg);z-index:6;text-decoration:none;
     box-shadow:0 16px 30px -12px rgba(124,92,250,.7),inset 0 1.5px 0 rgba(255,255,255,.45);
     transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
   .oss-sticker::before{content:"";position:absolute;inset:6px;border:2px dashed rgba(255,255,255,.7);border-radius:50%}
-  .oss-sticker:hover{transform:rotate(4deg) scale(1.08);color:#fff}
-  .oss-sticker svg{width:15px;height:15px;fill:#fff;margin-bottom:1px}
-  .oss-sticker .t1{font-size:11px;line-height:1.12}
+  .oss-sticker:hover{transform:rotate(12deg) scale(1.08);color:#fff}
+  .oss-sticker svg{width:16px;height:16px;fill:#fff;margin-bottom:1px}
+  .oss-sticker .t1{font-size:11.5px;line-height:1.12}
   .oss-sticker .t2{font-size:7.5px;font-weight:700;opacity:.85;letter-spacing:.12em;margin-top:1px}
-  @media(max-width:760px){.oss-sticker{width:74px;height:74px;top:-24px;right:-6px}.oss-sticker .t1{font-size:9px}.oss-sticker svg{width:12px;height:12px}.oss-sticker .t2{font-size:6.5px}}
+  @media(max-width:1240px){.oss-sticker{display:none}}
 
   nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));-webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);border-bottom:1px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:border-color .3s,background .3s}
   nav.scrolled{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.24))}
@@ -361,6 +362,11 @@
 <header id="top">
   <div class="cap k1" aria-hidden="true"><span class="cap-l">ש</span></div><div class="cap k2" aria-hidden="true"><span class="cap-l">Я</span></div><div class="cap k3" aria-hidden="true"><span class="cap-l">ض</span></div><div class="cap k4" aria-hidden="true"><span class="cap-l">A</span></div>
   <div class="wrap">
+    <a class="oss-sticker reveal" data-d="2" href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener" aria-label="FlicKey is open source on GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+      <span class="t1">OPEN</span><span class="t1">SOURCE</span>
+      <span class="t2">ON GITHUB</span>
+    </a>
     <h1 class="reveal" data-d="1">Always typing in the<br><span class="grad">right language.</span></h1>
     <p class="lead reveal" data-d="1">FlicKey learns your input language for <b>every app, every website, even each browser tab</b>, then switches the instant you focus. It's the auto-switching macOS never quite got right. Slip anyway? FlicKey notices, fixes the gibberish, and switches for you - or double-tap Shift to convert on demand.</p>
     <div class="cta-row reveal" data-d="2">
@@ -375,11 +381,6 @@
       </span>
     </div>
     <div class="floatcard reveal" data-d="2">
-    <a class="oss-sticker reveal" data-d="2" href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener" aria-label="FlicKey is open source on GitHub">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-      <span class="t1">OPEN</span><span class="t1">SOURCE</span>
-      <span class="t2">ON GITHUB</span>
-    </a>
 
       <span class="rpair"><b id="flA">EN</b> → <b id="flB">HE</b></span>
       <span class="rtext-wrap"><span class="rtext" id="flText">akuo</span><span class="rcaret"></span></span>
