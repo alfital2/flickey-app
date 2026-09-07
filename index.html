@@ -66,15 +66,15 @@
   .sq-28{width:30px;height:30px;border-radius:10px}.sq-28 svg{width:19px;height:19px}
 
 
-  /* open-source badge in the nav: a small sticker-style pill */
-  .nav-links a.oss-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;
+  /* source-code badge in the nav: a small sticker-style pill */
+  .nav-links a.src-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;
     background:var(--grad);color:#fff !important;font-weight:800;font-size:12.5px;letter-spacing:.04em;
     transform:rotate(-3deg);position:relative;text-decoration:none;
     box-shadow:0 10px 20px -10px rgba(124,92,250,.7),inset 0 1px 0 rgba(255,255,255,.4);
     transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-  .nav-links .oss-pill::before{content:"";position:absolute;inset:3px;border:1.5px dashed rgba(255,255,255,.65);border-radius:999px}
-  .nav-links a.oss-pill:hover{transform:rotate(0deg) scale(1.05);color:#fff !important}
-  .nav-links .oss-pill svg{width:14px;height:14px;fill:#fff}
+  .nav-links .src-pill::before{content:"";position:absolute;inset:3px;border:1.5px dashed rgba(255,255,255,.65);border-radius:999px}
+  .nav-links a.src-pill:hover{transform:rotate(0deg) scale(1.05);color:#fff !important}
+  .nav-links .src-pill svg{width:14px;height:14px;fill:#fff}
 
   nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));-webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);border-bottom:1px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:border-color .3s,background .3s}
   nav.scrolled{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.24))}
@@ -205,7 +205,6 @@
 
   section{padding:96px 0;position:relative}
   .sec-head{text-align:center;max-width:680px;margin:0 auto 52px}
-  .sec-head .n{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--g1);margin-bottom:14px;display:block}
   .sec-head h2{font-weight:800;font-size:clamp(32px,5vw,58px);line-height:1.05;letter-spacing:-.025em}
   .sec-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .sec-sub{color:var(--ink-soft);font-size:16.5px;margin-top:16px;line-height:1.6}
@@ -329,6 +328,7 @@
   .foot-in{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
   .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--ink)}
   .foot-in a{color:var(--ink-soft)}.foot-in a:hover{color:var(--g1)}
+  .foot-links{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -349,7 +349,7 @@
   <div class="wrap nav-in">
     <a class="brand" href="#top"><span class="sq sq-28" id="navico"></span>FlicKey</a>
     <div class="nav-links">
-      <a href="#autoswitch">Try it</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a class="oss-pill" href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener" aria-label="FlicKey is open source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>Open Source</a>
+      <a href="#autoswitch">Try it</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a class="src-pill" href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener" aria-label="FlicKey source code on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>Source Code</a>
       <a class="btn" href="https://github.com/alfital2/FlicKey/releases/latest/download/FlicKey.dmg">Download</a>
     </div>
   </div>
@@ -501,7 +501,6 @@
 <section id="autoswitch">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="n">01 - See it, try it</span>
       <h2>It follows you between apps - <span class="grad">try it yourself.</span></h2>
       <p class="sec-sub">FlicKey arms the right input language for each app - watch the menu-bar badge as it switches. Open the <b>FlicKey</b> app from the dock to fix some gibberish yourself.</p>
     </div>
@@ -581,7 +580,6 @@
 <section id="within" style="display:none">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="n">02 - Inside your apps</span>
       <h2>Right language, <span class="grad">per tab and per chat.</span></h2>
       <p class="sec-sub">Most tools remember one language per app. In browsers and team chats FlicKey goes a level deeper - arming the correct script for <b>each tab</b> and <b>each conversation</b>.</p>
     </div>
@@ -604,7 +602,7 @@
 <!-- FEATURES -->
 <section id="features">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="n">03 - Features</span><h2>It just keeps the language <span class="grad">right.</span></h2><p class="sec-sub">macOS has a per-app input setting. It forgets, lags, and resets. FlicKey is what it should have been.</p></div>
+    <div class="sec-head reveal"><h2>It just keeps the language <span class="grad">right.</span></h2><p class="sec-sub">macOS has a per-app input setting. It forgets, lags, and resets. FlicKey is what it should have been.</p></div>
     <div class="grid reveal" data-d="1">
       <div class="fcard"><span class="badge">CORE</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Per-app language memory</h3><p>Remembers the right input language for every app and switches the moment you focus it. Terminal stays Latin, chat stays Hebrew.</p></div>
       <div class="fcard"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></div><h3>Per-site memory</h3><p>Your browser remembers the language for each website, so the right script is armed before you press a single key.</p></div>
@@ -620,7 +618,7 @@
 <!-- PRIVACY -->
 <section id="privacy">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="n">04 - Privacy &amp; security</span><h2>Private <span class="grad">by design.</span></h2><p class="sec-sub">A tiny local utility, and <b>fully open source</b> - <a href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener">read every line yourself</a>. Not a keylogger: it reads your typing only in the moment to switch or fix a layout.</p></div>
+    <div class="sec-head reveal"><h2>Private <span class="grad">by design.</span></h2><p class="sec-sub">A tiny local utility with <b>fully public source code</b> - <a href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener">read every line yourself</a>. Not a keylogger: it reads your typing only in the moment to switch or fix a layout.</p></div>
     <div class="priv-grid reveal" data-d="1">
       <div class="priv"><h3><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Stays on your Mac</h3><p>It only stores tiny preferences - which layout you like per app, website, and chat. No documents, no messages, no keystrokes.</p></div>
       <div class="priv"><h3><svg viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 10.6a3 3 0 0 0 4.2 4.2"/><path d="M9.8 5.1A9 9 0 0 1 21 12a16 16 0 0 1-2.1 2.9"/><path d="M6.2 6.2A16 16 0 0 0 3 12a9 9 0 0 0 11.5 6.3"/></svg>No account, no tracking</h3><p>No sign-in, no analytics, no telemetry. Nothing is ever sent on its own - there is no server to send to.</p></div>
@@ -646,7 +644,6 @@
 <!-- FREE -->
 <section id="free">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:20px"><span class="n">05 - Pricing</span></div>
     <div class="big reveal">Free to try. <span class="grad">Yours to keep.</span></div>
     <div class="free-grid reveal" data-d="1">
       <div class="free-col"><h3>30 days, everything on</h3><p>Install it and every feature works right away, no account and no card. Take a full month to see if FlicKey earns a spot in your day.</p></div>
@@ -671,8 +668,7 @@
     <div class="wrap foot-in">
       <div class="foot-brand"><span class="sq sq-28" id="footico"></span>FlicKey <span id="appVersion" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);font-weight:500">v0.3.6</span></div>
       <span>Requires macOS Ventura or later</span>
-      <a href="terms.html">Terms</a>
-      <a href="https://github.com/alfital2/FlicKey/releases/latest">Releases</a>
+      <span class="foot-links"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/alfital2/FlicKey/releases/latest">Releases</a></span>
       <span>made by <a href="https://taltools.site">TalTool</a></span>
     </div>
   </footer>
