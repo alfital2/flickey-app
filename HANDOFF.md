@@ -1,21 +1,23 @@
 ## Status
 
-The site is live for FlicKey 0.6.0/build 78, with the Sparkle update feed pointing to the signed, notarized GitHub ZIP and the footer showing v0.6.0. The app release passed 575 unit tests, 5 conversion UI tests, and 6 tests verifying trial enforcement in the exact signed release. GitHub Pages deployment for `e788434` succeeded, and the live feed was verified at 0.6.0/build 78. Published ZIP and DMG downloads match the verified release checksums.
+The website and Sparkle feed serve FlicKey 0.6.0/build 78 from the canonical app repository, https://github.com/alfital2/FlicKey. The website repository now points visitors to that repository through its README, About description, and a prominent notice on its historical v0.5.0 release. Its 18 historical releases remain public pending explicit deletion confirmation.
 
 ## Recent changes
 
-- Updated appcast version, build, download URL, signature, byte length, and publication timestamp for the 0.6.0 update.
-- Updated the static footer fallback so it matches the release even before the dynamic version lookup completes.
-- App release verification confirmed the 30-day trial, expired-feature gating, ignored QA unlock flags, and ongoing expiry. Existing grandfathered access is preserved.
+- Made the README a clear entry point to canonical downloads, release notes, source, and issues, with instructions to publish future binaries only in alfital2/FlicKey.
+- Corrected the About homepage from keyflip.site to https://flickey.site and described this repository as the website/update-feed host.
+- Renamed the old latest release to "v0.5.0 (historical; releases moved)" and prepended links to current releases while preserving its original notes.
+- Backed up metadata and all 27 assets from the 18 historical releases in /Users/tal/Documents/flickey-oss/build/release-consolidation-2026-09-27; verified byte sizes and SHA-256 checksums before attempting removal.
+- Confirmed website download links, dynamic version lookup, and the live update feed already use alfital2/FlicKey. No website or feed changes were needed.
 
 ## Open questions / blockers
 
-- No release blocker remains.
-- Earlier non-release follow-ups remain: mobile visual review and optional language-specific SEO pages.
+- Automatic approval review rejected deleting all historical releases: the user's suggested removal was not explicit enough for broad permanent deletion of public release assets. No releases were deleted. Obtain explicit confirmation before retrying. Deletion retires old direct download links; current website downloads and update-feed URLs remain valid.
+- Earlier follow-ups remain: mobile visual review and optional language-specific SEO pages.
 
 ## Next steps
 
-1. Monitor release feedback; the public feed and downloads have been verified.
-2. Keep feed version/signature/length tied to the exact published ZIP for future releases.
+1. After explicit confirmation, remove only the 18 backed-up historical releases from alfital2/flickey-app, verify none remain, and update README wording. Keep Pages, appcast.xml, and git history intact.
+2. Continue publishing app assets only in alfital2/FlicKey; keep this site's feed tied to the exact signed ZIP.
 
-_Last updated: 2026-09-26 by Codex_
+_Last updated: 2026-09-27 by Codex_
