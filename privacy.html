@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FlicKey · Privacy Policy</title>
-<meta name="description" content="Privacy policy for FlicKey, a macOS menu-bar utility. It collects no data — everything stays on your Mac." />
+<meta name="description" content="How FlicKey processes typing locally, stores preferences, connects for updates and licensing, and handles voluntary feedback, website visits, and purchases." />
 <meta name="robots" content="all" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -86,25 +86,49 @@
 <main>
 <div class="wrap">
   <h1><span class="grad">Privacy</span> Policy</h1>
-  <div class="updated">Last updated: 14 June 2026</div>
+  <div class="updated">Last updated: 21 November 2026</div>
 
-  <p class="lead">FlicKey is a small macOS menu-bar utility that fixes text typed in the wrong keyboard layout. Your privacy is simple: it collects nothing.</p>
+  <p class="lead">FlicKey fixes text typed in the wrong keyboard layout. Typing is processed on your Mac; updates, licensing, and feedback you choose to share involve separate services.</p>
 
-  <h2>We collect nothing</h2>
-  <p>FlicKey does <b>not</b> collect, store, transmit, or share any personal data. There is no analytics, no tracking, no advertising, and no account or sign-in.</p>
+  <h2>Local typing, no account</h2>
+  <p>The app has no account or sign-in, advertising, or automatic usage analytics. It does not upload your documents, messages, keystrokes, or browsing history as part of switching or conversion, and we do not sell that content.</p>
 
-  <h2>Everything stays on your Mac</h2>
+  <h2>What is stored on your Mac</h2>
   <ul>
-    <li>The text FlicKey reads in order to convert it is processed <b>entirely on-device, in memory</b>, and is never saved or sent anywhere.</li>
-    <li>Your preferences — input language per app and per website, trial state, and purchase status — are stored <b>locally</b> on your Mac (in the app's sandbox container).</li>
-    <li>The active browser tab's address is read <b>only on-device</b> to remember your preferred typing language for that website; it is never recorded or transmitted.</li>
+    <li>Text conversion is processed <b>on-device, in memory</b>. Words from undone auto-fixes and their rejection counts can be saved locally so FlicKey learns which words to leave alone.</li>
+    <li>Preferences and layout memory for apps, website domains, and chats are stored locally in macOS preferences. The active tab's address is read locally; per-site memory stores the domain and preferred layout, not the full URL or page contents.</li>
+    <li>Trial state is stored in the macOS Keychain with a local preferences backup. An activated license's key, activation instance ID, and the customer name and email returned by Lemon Squeezy are stored in the Keychain.</li>
   </ul>
 
   <h2>Permissions</h2>
-  <p>FlicKey requests macOS <b>Accessibility</b> permission solely to read the text it converts and type the corrected text back in place. It uses <b>Apple Events</b> only to read the active browser tab's URL for per-site language memory. These are used locally and for no other purpose.</p>
+  <p>FlicKey uses macOS <b>Accessibility</b> permission to observe typing, read focused text and app, tab, or chat context, and write corrected text back in place. It uses <b>Apple Events</b> to read the active tab's address in supported browsers; Firefox-based browsers use Accessibility instead. This processing is local.</p>
+
+  <h2>App connections: updates and licensing</h2>
+  <ul>
+    <li><b>Updates:</b> Sparkle checks <code>flickey.site/appcast.xml</code>, hosted on GitHub Pages, and downloads releases from GitHub. Automatic checks are enabled by default and can be turned off in Settings; you can also check manually. Requests include the app and Sparkle versions in the User-Agent header. Sparkle system-profile reporting is not enabled by FlicKey's default configuration.</li>
+    <li><b>Licensing:</b> activating a key requires a connection to <code>api.lemonsqueezy.com</code> and sends the license key and your Mac's name. Validation and deactivation send the key and activation instance ID. An activated license is checked again when more than three days have passed since its last successful activation or validation; failed checks may be retried. Network errors leave the activated license intact. An explicit invalid-license response removes it.</li>
+  </ul>
+  <p>These requests contain no typing content. As with other internet requests, the receiving services see your IP address and request metadata such as the requested URL and HTTP headers.</p>
+
+  <h2>Feedback you choose to share</h2>
+  <p>Diagnostic recording is off by default. If enabled, it records recent app decisions locally, without the text you type. A report can include event times, app and macOS versions, app and keyboard-layout identifiers, a random installation ID, counts and dictionary status, and hashed site or chat identifiers. It also includes any note you add. You preview the report before sharing or saving it.</p>
+  <p>FlicKey can offer to share words it wrongly auto-fixed. These prompts are enabled by default and can be turned off; they do not send anything automatically. You see the words before choosing to share them. The feedback includes those words, their count, the app version, and the random installation ID.</p>
+  <p>Sharing opens an email addressed to <a href="mailto:support@flickey.site">support@flickey.site</a>, or the macOS share sheet if no suitable mail client is available. Your email or chosen sharing service handles sending. Information you send to support, including your email address, reaches us through that service.</p>
 
   <h2>Purchases</h2>
-  <p>If you buy the one-time unlock, the payment is handled entirely by the platform you bought from (the Mac App Store via Apple, or our authorized reseller on the web). FlicKey never sees or stores your payment information.</p>
+  <p>The one-time unlock is purchased through <b>Lemon Squeezy</b>, our authorized reseller and Merchant of Record. Checkout runs in your browser and handles your name, email, and payment details under Lemon Squeezy's privacy policy. The app receives license and customer details when you activate a key, but does not receive or store your payment-card details.</p>
+
+  <h2>FlicKey for Windows (beta)</h2>
+  <p>The Windows beta works like the Mac app, with these differences:</p>
+  <ul>
+    <li><b>Typing stays on your PC.</b> FlicKey watches your keystrokes through a Windows keyboard hook and reads the focused text field through Windows UI Automation to check its fixes. This is processed locally and never sent anywhere. It never edits password fields or windows running as administrator.</li>
+    <li><b>What is stored on your PC:</b> settings and learned preferences in <code>%LOCALAPPDATA%\FlicKey</code> (including the layout remembered per app, per website domain and per chat title, and words you taught it to skip), plus a short technical log without your typing. Uninstalling can remove all of it.</li>
+    <li><b>The preview bubble</b> briefly reads the pixels behind it to draw its frosted background. That image stays in memory, is never saved or sent, and the bubble is hidden from screenshots and screen sharing.</li>
+    <li><b>Connections:</b> to check for updates, FlicKey contacts <code>flickey.site/appcast-windows.xml</code> and downloads updates from GitHub. You can turn automatic checks off in Settings. The beta is free and makes no licensing connections.</li>
+  </ul>
+
+  <h2>Website visits</h2>
+  <p>This website is hosted on GitHub Pages, loads fonts from Google Fonts, and checks GitHub's API to display the latest release version. It has no analytics script. Those services receive browser requests, including your IP address and request headers. This website traffic and Lemon Squeezy checkout traffic are separate from the app's update and licensing connections.</p>
 
   <h2>Changes</h2>
   <p>We may update this policy from time to time. The current version is always available at this page, with the "Last updated" date above.</p>
