@@ -334,6 +334,9 @@
   .final h2{font-weight:800;font-size:clamp(34px,6vw,64px);line-height:1.0;letter-spacing:-.02em;margin-bottom:14px;position:relative;z-index:1}
   .final p{font-size:16.5px;margin-bottom:28px;opacity:.92;position:relative;z-index:1}
   .final .btn{background:#fff;color:var(--g1);position:relative;z-index:1;box-shadow:0 18px 40px -14px rgba(0,0,0,.35)}
+  .final-ctas{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;z-index:1}
+  .final .btn{width:272px;justify-content:center}
+  .final .btn-win{color:#0067c0}
   footer{margin-top:70px;padding:30px 0 40px}
   .foot-in{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
   .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--ink)}
@@ -360,7 +363,7 @@
     <a class="brand" href="#top"><span class="sq sq-28" id="navico"></span>FlicKey</a>
     <div class="nav-links">
       <a href="#autoswitch">Try it</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a class="src-pill" href="https://github.com/alfital2/FlicKey" target="_blank" rel="noopener" aria-label="FlicKey source code on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>Source Code</a>
-      <a class="btn" href="https://github.com/alfital2/FlicKey/releases/latest/download/FlicKey.dmg">Download</a>
+      <a class="btn" href="#top">Download</a>
     </div>
   </div>
 </nav>
@@ -682,16 +685,22 @@
     <div class="final reveal">
       <h2>Never retype a sentence again.</h2>
       <p>Tiny, native, and free to try. Built for everyone who lives across two keyboards, or five.</p>
+      <div class="final-ctas">
       <a class="btn" href="https://github.com/alfital2/FlicKey/releases/latest/download/FlicKey.dmg">
         <svg class="apple" viewBox="0 0 24 24"><path d="M17.05 12.04c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.32.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.69.71 2.85.69 1.18-.02 1.92-1.08 2.64-2.14.83-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.5zM14.88 5.39c.6-.73 1.01-1.74.9-2.75-.87.04-1.92.58-2.55 1.31-.56.64-1.05 1.67-.92 2.65.97.08 1.96-.49 2.57-1.21z"/></svg>
         Download for macOS
       </a>
+      <a class="btn btn-win" href="https://github.com/alfital2/FlicKey/releases/download/win-v0.1.0/FlicKey-Setup-0.1.0-x64.exe">
+        <svg class="win" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4.5l7.5-1v8H3v-7zm8.5-1.2L21 2v9.5h-9.5V3.3zM3 12.5h7.5v8L3 19.5v-7zm8.5 0H21V22l-9.5-1.3v-8.2z"/></svg>
+        Download for Windows
+      </a>
+      </div>
     </div>
   </div>
   <footer>
     <div class="wrap foot-in">
       <div class="foot-brand"><span class="sq sq-28" id="footico"></span>FlicKey <span id="appVersion" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);font-weight:500">v0.6.0</span></div>
-      <span>Requires macOS Ventura or later</span>
+      <span>macOS Ventura or later · Windows 11 (beta)</span>
       <span class="foot-links"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/alfital2/FlicKey/releases/latest">Releases</a></span>
       <span>made by <a href="https://taltools.site">TalTool</a></span>
     </div>
