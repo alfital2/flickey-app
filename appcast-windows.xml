@@ -6,13 +6,13 @@
     <description>In-app updates for FlicKey for Windows.</description>
     <language>en</language>
     <item>
-      <title>FlicKey 0.1.0</title>
-      <pubDate>Sat, 21 Nov 2026 19:18:56 +0000</pubDate>
-      <sparkle:version>1</sparkle:version>
-      <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
+      <title>FlicKey 0.1.1</title>
+      <pubDate>Sun, 22 Nov 2026 22:00:22 +0000</pubDate>
+      <sparkle:version>2</sparkle:version>
+      <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
       <link>https://flickey.site</link>
-      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/win-v0.1.0/FlicKey-Setup-0.1.0-x64.exe" sparkle:os="windows-x64" sparkle:edSignature="ELUaUUd2CRmlEzZHzucP9Uwc9IwQjMTAaM1qjdeXeHz99KcYOLOq3+uqbvW7NEYNCJqHU32hFeyXtWYt0d7EDw==" length="19610298" sparkle:installerArguments="/SILENT /SUPPRESSMSGBOXES /NORESTART" type="application/octet-stream" />
-      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/win-v0.1.0/FlicKey-Setup-0.1.0-arm64.exe" sparkle:os="windows-arm64" sparkle:edSignature="nL+ZM833CyucXpFyyvYE5cr+xn3yuR6cNl59vAwtXkKBNOr6wwyQe9kQ/MJ4M7hXAUi2su+SAr7FR3EQCLxFCA==" length="19250367" sparkle:installerArguments="/SILENT /SUPPRESSMSGBOXES /NORESTART" type="application/octet-stream" />
+      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/win-v0.1.1/FlicKey-Setup-0.1.1-x64.exe" sparkle:os="windows-x64" sparkle:edSignature="U73UIi1zKZdw5jQEGb+9VpUVCMqyEDFrm/NuBzjszHXYMhTrk3MR6RdBYqWgh2IG3WklfNkkTy0sqtyz96uBBQ==" length="19776536" sparkle:installerArguments="/SILENT /SUPPRESSMSGBOXES /NORESTART" type="application/octet-stream" />
+      <enclosure url="https://github.com/alfital2/FlicKey/releases/download/win-v0.1.1/FlicKey-Setup-0.1.1-arm64.exe" sparkle:os="windows-arm64" sparkle:edSignature="laemz34JuTlpRrfMhct+qjwV6/LU5KLGe0kybRUvEpo3Msuy/jgbt4iJAPLCkb/UwUDZltnSRlc36o8sqjClDg==" length="19413298" sparkle:installerArguments="/SILENT /SUPPRESSMSGBOXES /NORESTART" type="application/octet-stream" />
     </item>
   </channel>
 </rss>
