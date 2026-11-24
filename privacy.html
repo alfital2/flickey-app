@@ -118,13 +118,14 @@
   <h2>Purchases</h2>
   <p>The one-time unlock is purchased through <b>Lemon Squeezy</b>, our authorized reseller and Merchant of Record. Checkout runs in your browser and handles your name, email, and payment details under Lemon Squeezy's privacy policy. The app receives license and customer details when you activate a key, but does not receive or store your payment-card details.</p>
 
-  <h2>FlicKey for Windows (beta)</h2>
-  <p>The Windows beta works like the Mac app, with these differences:</p>
+  <h2>FlicKey for Windows</h2>
+  <p>FlicKey for Windows works like the Mac app, with these differences:</p>
   <ul>
     <li><b>Typing stays on your PC.</b> FlicKey watches your keystrokes through a Windows keyboard hook and reads the focused text field through Windows UI Automation to check its fixes. This is processed locally and never sent anywhere. It never edits password fields or windows running as administrator.</li>
     <li><b>What is stored on your PC:</b> settings and learned preferences in <code>%LOCALAPPDATA%\FlicKey</code> (including the layout remembered per app, per website domain and per chat title, and words you taught it to skip), plus a short technical log without your typing. Uninstalling can remove all of it.</li>
     <li><b>The preview bubble</b> briefly reads the pixels behind it to draw its frosted background. That image stays in memory, is never saved or sent, and the bubble is hidden from screenshots and screen sharing.</li>
-    <li><b>Connections:</b> to check for updates, FlicKey contacts <code>flickey.site/appcast-windows.xml</code> and downloads updates from GitHub. You can turn automatic checks off in Settings. The beta is free and makes no licensing connections.</li>
+    <li><b>Connections:</b> to check for updates, FlicKey contacts <code>flickey.site/appcast-windows.xml</code> and downloads updates from GitHub. You can turn automatic checks off in Settings. The Microsoft Store edition gets updates from the Store instead.</li>
+    <li><b>Licensing:</b> when you activate, recheck or deactivate a license, FlicKey sends the license key and an activation id to Lemon Squeezy, as on the Mac. The license key and the trial start date are kept in Windows Credential Manager for your user account, so reinstalling does not restart the trial. Nothing you type is sent.</li>
   </ul>
 
   <h2>Website visits</h2>
